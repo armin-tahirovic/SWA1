@@ -310,7 +310,7 @@ function cloudCoverage(unit, value, UV,) {
 }
 
 
-function cloudCoveragePrediction(unit, maxValue, minValue, UV) {
+function cloudCoveragePrediction(unit, maxValue, minValue, uv) {
 
     function getUnit() {
         return unit
@@ -325,7 +325,7 @@ function cloudCoveragePrediction(unit, maxValue, minValue, UV) {
     }
 
     function getUV() {
-        return UV
+        return uv
     }
 
     function matches(cloud) {
