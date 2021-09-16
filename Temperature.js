@@ -286,3 +286,51 @@ function windPrediction(unit, minValue, maxValue, expectedDirection) {
 let temp8 = windPrediction("MS", 5, 15, "East")
 console.log(temp8.matches(3))
 console.log(temp8.matches(10))
+
+
+function cloudCoverage(unit, value, UV,) {
+
+    function getUnit() {
+        return unit
+    }
+
+    function getValue() {
+        return value
+    }
+
+    function getUV() {
+        return UV
+    }
+
+    return {
+        getUnit,
+        getValue,
+        getUV
+    }
+}
+
+
+function cloudCoveragePrediction(unit, maxValue, minValue, UV) {
+
+    function getUnit() {
+        return unit
+    }
+
+    function getMaxValue() {
+        return maxValue
+    }
+
+    function getMinValue() {
+        return minValue
+    }
+
+    function getUV() {
+        return UV
+    }
+
+    function matches(cloud) {
+        if(cloud <= maxValue && cloud >= minValue) {
+            return true
+        }
+    }
+}
