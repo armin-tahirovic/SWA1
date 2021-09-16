@@ -128,7 +128,7 @@ function precipitation(unit, value, precipitationType) {
 
 let temp4 = precipitation("MM", 78, "Rain")
 temp4.convertToInches()
-console.log(temp4.getUnit(), temp4.getValue())
+console.log(temp4.getValue(), temp4.getUnit())
 
 
 function precipitationPrediction(unit, minValue, maxValue, expectedType) {
