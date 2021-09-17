@@ -1,12 +1,8 @@
-function temperature(unit, value) {
+import { weatherData } from "./WeatherDataMixin.mjs";
 
-    function getUnit() {
-        return unit
-    }
+function temperature(value, time, place, type, unit) {
 
-    function getValue() {
-        return value
-    }
+    const weatherDataFunction = weatherData(value, time, place, type, unit)
 
     function convertToF() {
         if(unit === "C") {
@@ -23,22 +19,17 @@ function temperature(unit, value) {
     }
 
     return {
-        getUnit,
-        getValue,
+        ...weatherDataFunction,
         convertToF,
         convertToC
     }
 }
 
-let temp1 = temperature("F", 78)
+let temp1 = temperature(78, 2000, "Horsens", "Sunny", "F")
 temp1.convertToC()
-console.log(temp1.getValue(), temp1.getUnit())
+console.log(temp1.getValue(), temp1.getUnit(), temp1.getType())
 
-let temp2 = temperature("C", 25)
-temp2.convertToF()
-console.log(temp2.getValue(), temp2.getUnit())
-
-
+/*
 function temperaturePrediction(unit, minValue, maxValue) {
 
     function getUnit() {
@@ -87,17 +78,11 @@ function temperaturePrediction(unit, minValue, maxValue) {
 
 let temp3 = temperaturePrediction("C", 15, 25)
 console.log(temp3.matches(30))
+*/
 
+function precipitation(value, time, place, type, unit, precipitationType) {
 
-function precipitation(unit, value, precipitationType) {
-    
-    function getUnit() {
-        return unit
-    }
-
-    function getValue() {
-        return value
-    }
+    const weatherDataFunction = weatherData(value, time, place, type, unit)
 
     function getPrecipitationType() {
         return precipitationType
@@ -118,19 +103,18 @@ function precipitation(unit, value, precipitationType) {
     }
 
     return {
-        getUnit,
-        getValue,
+        ...weatherDataFunction,
         getPrecipitationType,
         convertToInches,
         convertToMM
     }
 }
 
-let temp4 = precipitation("MM", 78, "Rain")
+let temp4 = precipitation(78, 1100, "Vejle", "Rain", "MM", "Storm")
 temp4.convertToInches()
 console.log(temp4.getValue(), temp4.getUnit())
 
-
+/*
 function precipitationPrediction(unit, minValue, maxValue, expectedType) {
 
     function getUnit() {
@@ -185,17 +169,11 @@ function precipitationPrediction(unit, minValue, maxValue, expectedType) {
 let temp5 = precipitationPrediction("Inch", 1, 5, "Snow")
 console.log(temp5.matches(3))
 console.log(temp5.matches(10))
+*/
 
+function wind(value, time, place, type, unit, direction) {
 
-function wind(unit, value, direction) {
-
-    function getUnit() {
-        return unit
-    }
-
-    function getValue() {
-        return value
-    }
+    const weatherDataFunction = weatherData(value, time, place, type, unit)
 
     function getDirection() {
         return direction
@@ -216,22 +194,18 @@ function wind(unit, value, direction) {
     }
 
     return {
-        getUnit,
-        getValue,
+        ...weatherDataFunction,
         getDirection,
         convertToMPH,
         convertToMS
     }
 }
 
-let temp6 = wind("MS", 5, "North")
+let temp6 = wind(5, 1030, "Copenhagen", "hurricane", "MS", "North")
 temp6.convertToMPH()
-let temp7 = wind("MPH", 5, "West")
-temp7.convertToMS()
 console.log(temp6.getValue(), temp6.getUnit())
-console.log(temp7.getValue(), temp7.getUnit())
 
-
+/*
 function windPrediction(unit, minValue, maxValue, expectedDirection) {
 
     function getUnit() {
@@ -286,30 +260,26 @@ function windPrediction(unit, minValue, maxValue, expectedDirection) {
 let temp8 = windPrediction("MS", 5, 15, "East")
 console.log(temp8.matches(3))
 console.log(temp8.matches(10))
+*/
 
+function cloudCoverage(value, time, place, type, unit, UV) {
 
-function cloudCoverage(unit, value, UV,) {
-
-    function getUnit() {
-        return unit
-    }
-
-    function getValue() {
-        return value
-    }
+    const weatherDataFunction = weatherData(value, time, place, type, unit)
 
     function getUV() {
         return UV
     }
 
     return {
-        getUnit,
-        getValue,
+        ...weatherDataFunction,
         getUV
     }
 }
 
+let temp7 = cloudCoverage(100, 1913, "Midtjylland", "Normal", "M^2", 60)
+console.log(temp7.getValue(), temp7.getUnit())
 
+/*
 function cloudCoveragePrediction(unit, maxValue, minValue, uv) {
 
     function getUnit() {
@@ -342,3 +312,4 @@ function cloudCoveragePrediction(unit, maxValue, minValue, uv) {
         matches
     }
 }
+*/
