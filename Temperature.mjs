@@ -333,4 +333,12 @@ function cloudCoveragePrediction(unit, maxValue, minValue, uv) {
             return true
         }
     }
+
+    return {
+        getUnit,
+        getMaxValue,
+        getMinValue,
+        getUV,
+        matches
+    }
 }
