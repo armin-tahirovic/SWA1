@@ -1,4 +1,4 @@
-import { event, dataType } from "./EventDataType.mjs";
+import { event, dataType } from "./Mixin/EventDataTypeMixin.mjs";
 
 function weatherData(value, time, place, type, unit) {
 

@@ -1,4 +1,4 @@
-import { EventDataType } from "./EventDataTypeClass.mjs";
+import { EventDataType } from "./Class/EventDataTypeClass.mjs";
 
 class WeatherDataClass extends EventDataType {
     constructor(value, time, place, type, unit) {
