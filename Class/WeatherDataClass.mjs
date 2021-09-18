@@ -1,4 +1,4 @@
-import { EventDataType } from "./Class/EventDataTypeClass.mjs";
+import { EventDataType } from "./EventDataTypeClass.mjs";
 
 class WeatherDataClass extends EventDataType {
     constructor(value, time, place, type, unit) {
@@ -13,3 +13,5 @@ class WeatherDataClass extends EventDataType {
 
 let weather = new WeatherDataClass(20, 2000, "VIA", "Snow", "mm")
 console.log(weather.getType())
+
+export { WeatherDataClass }

@@ -80,12 +80,12 @@ let temp3 = temperaturePrediction("C", 15, 25)
 console.log(temp3.matches(30))
 */
 
-function precipitation(value, time, place, type, unit, precipitationType) {
+function precipitation(value, time, place, type, unit) {
 
     const weatherDataFunction = weatherData(value, time, place, type, unit)
 
     function getPrecipitationType() {
-        return precipitationType
+        return type
     }
 
     function convertToInches() {
