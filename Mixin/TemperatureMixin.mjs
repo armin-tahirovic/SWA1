@@ -83,12 +83,12 @@ let temp3 = temperaturePrediction("C", 15, 25)
 console.log(temp3.matches(30))
 */
 
-function precipitation(value, time, place, type, unit) {
+function precipitation(value, time, place, type, unit, precipitation) {
 
     const weatherDataFunction = weatherData(value, time, place, type, unit)
 
     function getPrecipitationType() {
-        return type
+        return precipitation
     }
 
     function convertToInches() {
@@ -267,7 +267,7 @@ console.log(temp8.matches(3))
 console.log(temp8.matches(10))
 */
 
-function cloudCoverage(value, time, place, type, unit, UV) {
+function cloudCoverage(value, time, place, type, unit, UV, density, cloudType) {
 
     const weatherDataFunction = weatherData(value, time, place, type, unit)
 
@@ -275,9 +275,19 @@ function cloudCoverage(value, time, place, type, unit, UV) {
         return UV
     }
 
+    function getDensity() {
+        return density
+    }
+
+    function getCloudType() {
+        return cloudType
+    }
+
     return {
         ...weatherDataFunction,
-        getUV
+        getUV,
+        getDensity,
+        getCloudType
     }
 }
 
