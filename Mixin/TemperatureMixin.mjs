@@ -9,6 +9,8 @@ function temperature(value, time, place, type, unit) {
             value = value * 1.8 + 32
             unit = "F"
         }
+
+        return {value, unit}
     }
 
     function convertToC() {
@@ -16,6 +18,8 @@ function temperature(value, time, place, type, unit) {
             value = (value - 32) / 1.8
             unit = "C"
         }
+
+        return {value, unit}
     }
 
     return {
@@ -26,8 +30,7 @@ function temperature(value, time, place, type, unit) {
 }
 
 let temp1 = temperature(78, 2000, "Horsens", "Sunny", "F")
-temp1.convertToC()
-console.log(temp1.getValue(), temp1.getUnit(), temp1.getType())
+console.log(temp1.convertToC().value, temp1.convertToC().unit)
 
 /*
 function temperaturePrediction(unit, minValue, maxValue) {
@@ -93,6 +96,8 @@ function precipitation(value, time, place, type, unit) {
             value = value * 0.039370
             unit = "Inch"
         }
+
+        return {value, unit}
     }
 
     function convertToMM() {
@@ -100,6 +105,8 @@ function precipitation(value, time, place, type, unit) {
             value = value * 25.4
             unit = "MM"
         }
+
+        return {value, unit}
     }
 
     return {
@@ -110,9 +117,6 @@ function precipitation(value, time, place, type, unit) {
     }
 }
 
-let temp4 = precipitation(78, 1100, "Vejle", "Rain", "MM", "Storm")
-temp4.convertToInches()
-console.log(temp4.getValue(), temp4.getUnit())
 
 /*
 function precipitationPrediction(unit, minValue, maxValue, expectedType) {
@@ -184,6 +188,8 @@ function wind(value, time, place, type, unit, direction) {
             value = value * 2.236936
             unit = "MPH"
         }
+
+        return {value, unit}
     }
 
     function convertToMS() {
@@ -191,6 +197,8 @@ function wind(value, time, place, type, unit, direction) {
             value = value * 0.44704
             unit = "MS"
         }
+
+        return {value, unit}
     }
 
     return {
@@ -201,9 +209,6 @@ function wind(value, time, place, type, unit, direction) {
     }
 }
 
-let temp6 = wind(5, 1030, "Copenhagen", "hurricane", "MS", "North")
-temp6.convertToMPH()
-console.log(temp6.getValue(), temp6.getUnit())
 
 /*
 function windPrediction(unit, minValue, maxValue, expectedDirection) {
@@ -276,8 +281,6 @@ function cloudCoverage(value, time, place, type, unit, UV) {
     }
 }
 
-let temp7 = cloudCoverage(100, 1913, "Midtjylland", "Normal", "M^2", 60)
-console.log(temp7.getValue(), temp7.getUnit())
 
 /*
 function cloudCoveragePrediction(unit, maxValue, minValue, uv) {
