@@ -83,6 +83,9 @@ class cloudCoverage extends WeatherDataClass {
     }
 
     getUv() {
-        return uv
+        return this.uv
     }
 }
+
+let temp2 = new cloudCoverage(79, 2100, "Horsens", "Sunny", "F", 80)
+console.log(temp2.getValue(), temp2.getUnit(), temp2.getUv())
