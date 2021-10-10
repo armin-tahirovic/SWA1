@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Weather</title>
+    <style>
+        td {
+            width: 40px;
+            height: 40px;
+            border: 1px solid black;
+        }
+        table {
+            border: 1px solid black;
+            border-spacing: 0;
+        }
+    </style>
+    <script type="module">
+        import model from './model.js'
+        import view from './view.js'
+
+        window.init = function() {
+            const theView = view(window)
+            const request = new XMLHttpRequest()
+            request.open('GET', 'http://localhost:8080/data')
+            request.send()
+            request.onerror = () => view.displayError
+            request.onload = () => {
+                if (request.status != 200) view.displayError(request.responseText)
+                const weather = JSON.parse(request.responseText)
+                const theModel = model(weather)
+                console.log(theModel)
+                theView.update(theModel)
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id='base'>
+        <h1>Weather</h1>
+        <table id='Weathers'>
+            <thead><tr><td>Type</td><td>Time</td><td>Place</td><td>Value</td><td>Unit</td></tr></thead>
+            <tbody id='WeatherData'></tbody>
+        </table>
+        <p id='error message'>
+    </div>
+</body>
+</html>
