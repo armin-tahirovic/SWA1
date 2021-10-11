@@ -1,7 +1,7 @@
-import { WeatherDataFunction } from "./WeatherDataFunctional.mjs"
+import { WeatherData } from "./WeatherData.mjs"
 
 
-class Temperature extends WeatherDataFunction {
+class Temperature extends WeatherData {
     constructor(value, time, place, type, unit) {
         super(value, time, place, type, unit)
         Object.freeze(this)
@@ -28,7 +28,7 @@ console.log(temp1.convertToF())
 
 
 
-class Precipitation extends WeatherDataFunction {
+class Precipitation extends WeatherData {
     constructor(value, time, place, type, unit) {
         super(value, time, place, type, unit)
         Object.freeze(this)
@@ -60,7 +60,7 @@ console.log(pre1.getPrecipitationType())
 
 
 
-class Wind extends WeatherDataFunction {
+class Wind extends WeatherData {
     constructor(value, time, place, type, unit, direction) {
         super(value, time, place, type, unit)
         this.direction = direction
@@ -93,7 +93,7 @@ console.log(wind.getDirection())
 
 
 
-class Cloud extends WeatherDataFunction {
+class Cloud extends WeatherData {
     constructor(value, time, place, type, unit, uv, cloudType, density) {
         super(value, time, place, type, unit)
         this.uv = uv
@@ -114,5 +114,5 @@ class Cloud extends WeatherDataFunction {
         return this.density
     }
 }
-let cloudCoverage = new Cloud(25, 530, "Horsens", "Storm", "MS", 78)
+let cloudCoverage = new Cloud(25, 530, "Horsens", "Storm", "MS", 78, 'Heavy', 'Too much')
 console.log(cloudCoverage.getPlace())
