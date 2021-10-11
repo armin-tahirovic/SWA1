@@ -1,8 +1,8 @@
 const view = (window) => {
     const document = window.document
-    const table_body = document.getElementById('WeatherData')
+    const tables = ['measurement', 'showMinData', 'showMaxData', 'showTotalData', 'showAvgData', 'showPredictData']
 
-    const addweatherData = w => {
+    const addData = w => {
         const tr = table_body.appendChild(document.createElement('tr'))
         tr.insertCell().appendChild(document.createTextNode(w.value))
         tr.insertCell().appendChild(document.createTextNode(w.type))
@@ -13,17 +13,59 @@ const view = (window) => {
         if (w.direction) tr.insertCell().appendChild(document.createTextNode(w.direction))
     }
 
+    const addRow = r => {
+        const tr = table_body.appendChild(document.createElement('tr'))
+        tr.insertCell().appendChild(document.createTextNode(r.value))
+        tr.insertCell().appendChild(document.createTextNode(r.place))
+    }
+
     const displayError = e => {
         const msg_board = document.getElementById('error message')
         msg_board.innerText = e
     }
 
+    const updateTable = (model, item) => {
+        table_body = document.getElementById(item)
+
+        switch (item) {
+            case 'measurement':
+                while (table_body.firstChild) table_body.removeChild(table_body.firstChild)
+                model.latestMeasurement().forEach(addData)
+                break;
+            case 'showMinData':
+                while (table_body.firstChild) table_body.removeChild(table_body.firstChild)
+                model.minTemp().forEach(addData)
+                break;
+            case 'showMaxData':
+                while (table_body.firstChild) table_body.removeChild(table_body.firstChild)
+                model.maxTemp().forEach(addData)
+                break;
+            case "showTotalData":
+                while (table_body.firstChild) table_body.removeChild(table_body.firstChild)
+                model.totalPrecipitation().forEach(addRow)
+                break;
+            case "showAvgData":
+                while (table_body.firstChild) table_body.removeChild(table_body.firstChild)
+                model.avgWindspeed().forEach(addRow)
+                break;
+
+            case "showPredictData":
+                while (table_body.firstChild) table_body.removeChild(table_body.firstChild)
+                model.hourlyPrediction().forEach(addData)
+                break;
+
+            default:
+                while (table_body.firstChild) table_body.removeChild(table_body.firstChild)
+                model.allData().forEach(addData)
+                break;
+        }
+    }
+
     const update = model => {
-        while(table_body.firstChild) table_body.removeChild(table_body.firstChild)
-        model.weatherData().forEach(addweatherData)
+        tables.forEach(updateTable.bind(null, model))
     }
 
     const prompt = window.prompt.bind(window)
 
-    return { addweatherData, update, prompt, displayError}
+    return { addData, update, prompt, displayError }
 }
