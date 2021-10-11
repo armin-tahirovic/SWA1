@@ -8,5 +8,3 @@ const model = (weathers, filter = () => true) => {
 
     return {weatherData, filtered, all}
 }
-
-export default model

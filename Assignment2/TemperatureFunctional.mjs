@@ -94,15 +94,25 @@ console.log(wind.getDirection())
 
 
 class Cloud extends WeatherDataFunction {
-    constructor(value, time, place, type, unit, uv) {
+    constructor(value, time, place, type, unit, uv, cloudType, density) {
         super(value, time, place, type, unit)
         this.uv = uv
+        this.cloudType = cloudType
+        this.density = density
         Object.freeze(this)
     }
 
     getUv() {
         return this.uv
     }
+
+    getCloudType() {
+        return this.cloudType
+    }
+
+    getDensity() {
+        return this.density
+    }
 }
 let cloudCoverage = new Cloud(25, 530, "Horsens", "Storm", "MS", 78)
-console.log(cloudCoverage.getUv())
+console.log(cloudCoverage.getPlace())

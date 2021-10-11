@@ -1,4 +1,4 @@
-export default window => {
+const view = (window) => {
     const document = window.document
     const table_body = document.getElementById('WeatherData')
 

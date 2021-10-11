@@ -12,11 +12,11 @@
             border-spacing: 0;
         }
     </style>
-    <script type="module">
-        import model from './model.js'
-        import view from './view.js'
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script>
 
-        window.init = function() {
+        const init = function() {
             const theView = view(window)
             const request = new XMLHttpRequest()
             request.open('GET', 'http://localhost:8080/data')
@@ -32,11 +32,11 @@
         }
     </script>
 </head>
-<body onload="init()">
+<body onload=init()>
     <div id='base'>
         <h1>Weather</h1>
         <table id='Weathers'>
-            <thead><tr><td>Type</td><td>Time</td><td>Place</td><td>Value</td><td>Unit</td></tr></thead>
+            <thead><tr><td>Value</td><td>Type</td><td>Unit</td><td>Time</td><td>Place</td><td>Precipitation type/Direction</td></tr></thead>
             <tbody id='WeatherData'></tbody>
         </table>
         <p id='error message'>
