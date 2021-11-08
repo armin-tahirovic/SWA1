@@ -9,7 +9,7 @@ class Temperature extends WeatherData {
 
     convertToF() {
         if(this.unit === "C") {
-            let newValue = this.value * 1.8 + 32
+            let newValue = this.getValue() * 1.8 + 32
             let newUnit = "F"
             return new Temperature(newValue, this.time, this.place, this.type, newUnit)
         }
@@ -17,7 +17,7 @@ class Temperature extends WeatherData {
     
     convertToC() {
         if(this.unit === "F") {
-            let newValue = (this.value - 32) / 1.8
+            let newValue = (this.getValue() - 32) / 1.8
             let newUnit = "C"
             return new Temperature(newValue, this.time, this.place, this.type, newUnit)
         }
@@ -40,7 +40,7 @@ class Precipitation extends WeatherData {
 
     convertToInches() {
         if(this.unit === "MM") {
-            let newValue = this.value * 0.039370
+            let newValue = this.getValue() * 0.039370
             let newUnit = "Inch"
             return new Precipitation(newValue, this.time, this.place, this.type, newUnit)
         }
@@ -48,7 +48,7 @@ class Precipitation extends WeatherData {
 
     convertToMM() {
         if(this.unit === "Inch") {
-            let newValue = this.value * 25.4
+            let newValue = this.getValue() * 25.4
             let newUnit = "MM"
             return new Precipitation(newValue, this.time, this.place, this.type, newUnit)
         }
@@ -73,7 +73,7 @@ class Wind extends WeatherData {
 
     convertToMPH() {
         if(this.unit === "MS") {
-            let newValue = this.value * 2.236936
+            let newValue = this.getValue() * 2.236936
             let newUnit = "MPH"
             return new Wind(newValue, this.time, this.place, this.type, newUnit, this.direction)
         }
@@ -81,7 +81,7 @@ class Wind extends WeatherData {
 
     convertToMS() {
         if(this.unit === "MPH") {
-            let newValue = this.value * 0.44704
+            let newValue = this.getValue() * 0.44704
             let newUnit = "MS"
             return new Wind(newValue, this.time, this.place, this.type, newUnit, this.direction)
         }
