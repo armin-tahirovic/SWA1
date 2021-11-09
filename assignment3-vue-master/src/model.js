@@ -1,5 +1,8 @@
 const model = (weather, forecast) => {
 
+    const Weather = () => weather
+        .sort((a, b) => (a.time > b.time) ? -1 : 1)
+
     const CityWeatherData = city => weather
         .sort((a, b) => (a.time > b.time) ? -1 : 1)
         .filter(w => w.place === city)
@@ -19,7 +22,7 @@ const model = (weather, forecast) => {
 
     const all = () => model(weather, forecast)
 
-    return { CityWeatherData, CityForecastData, TimeWeatherData, TimeForecastData, all }
+    return { Weather, CityWeatherData, CityForecastData, TimeWeatherData, TimeForecastData, all }
 }
 
 export default model

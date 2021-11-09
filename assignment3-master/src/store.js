@@ -3,26 +3,28 @@ export default (init_model, view, renderer) => {
     let model = init_model
 
     function reducer(action, model) {
-        const { city } = action
+        const { weather } = action
         switch (action.type) {
             case 'copenhagenWeather':
-                return model.CityWeatherData(city)
+                console.log(action)
+                const { weatherC } = action
+                return model.CityWeatherData(weatherC)
 
             case 'aarhusWeather':
-                return model.CityWeatherData(city)
+                return model.CityWeatherData(weather)
 
             case 'horsensWeather':
-                return model.CityWeatherData(city)
+                return model.CityWeatherData(weather)
 
             // Forecast
             case 'copenhagenForecast':
-                return model.CityForecastData(city)
+                return model.CityForecastData(weather)
 
             case 'aarhusForecast':
-                return model.CityForecastData(city)
+                return model.CityForecastData(weather)
 
             case 'horsensForecast':
-                return model.CityForecastData(city)
+                return model.CityForecastData(weather)
 
             default:
                 return model

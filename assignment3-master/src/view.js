@@ -1,43 +1,24 @@
 import React from "react";
 
-const CityData = ({ dispatcher }) => {
-    return [<td colspan="3" key='copenhagen'>
-        <button onClick={() => dispatcher()({ type: 'copenhagenWeather' })}>Copenhagen weather</button>
-    </td>]
-    [<td colspan="3" key='aarhus'>
-            <button onClick={() => dispatcher()({ type: 'aarhusWeather' })}>Aarhus weather</button>
-        </td>]
-    [<td colspan="3" key='horsens'>
-            <button onClick={() => dispatcher()({ type: 'horsensWeather' })}>Horsens weather</button>
-        </td>]
-
-    // Forecast
-    [<td colspan="3" key='copenhagen'>
-            <button onClick={() => dispatcher()({ type: 'copenhagenForecast' })}>Copenhagen Forecast</button>
-        </td>]
-    [<td colspan="3" key='aarhus'>
-            <button onClick={() => dispatcher()({ type: 'aarhusForecast' })}>Aarhus Forecast</button>
-        </td>]
-    [<td colspan="3" key='horsens'>
-            <button onClick={() => dispatcher()({ type: 'horsensForecast' })}>Horsens Forecast</button>
-        </td>]
-}
-
-const WeatherData = ({ weather, dispatcher }) => [
-    ...CityData({ weather, dispatcher })
+const WeatherData = ({ weather }) => [
+    <td key='value'>{weather.value}</td>,
+    <td key='type'>{weather.type}</td>,
+    <td key='unit'>{weather.unit}</td>,
+    <td key='time'>{weather.time}</td>,
+    <td key='place'>{weather.place}</td>
 ]
 
-
+// eslint-disable-next-line
 const WeatherRow = (props) => (
     <tr>
         <WeatherData {...props} />
     </tr>
 )
 
-const WeatherDataBody = ({ model, dispatcher }) => (
+const WeatherDataBody = ({ model }) => (
     <tbody>
         {
-            model.CityWeatherData().map(weather => WeatherRow({...{weather, dispatcher}}))
+            model.Weather().map(weather => <WeatherRow {...{ weather }} />)
         }
     </tbody>
 )
@@ -47,8 +28,19 @@ export default dispatcher => model => (
     <div id='base'>
         <h1>Weather</h1>
         <table id='weather'>
-            <thead><tr><td>Value</td><td>Type</td><td>Unit</td><td>Time</td><td>Place</td></tr></thead>
-            <WeatherDataBody model={model} dispatcher={dispatcher} />
+            <thead>
+                <tr>
+                    <td>Value</td>
+                    <td>Type</td>
+                    <td>Unit</td>
+                    <td>Time</td>
+                    <td>Place</td>
+                    <td colSpan="3" key='copenhagen'>
+                        <button onClick={() => dispatcher()({ type: 'copenhagenWeather', param: 'Copenhagen' })}>Copenhagen weather</button>
+                    </td>
+                </tr>
+            </thead>
+            <WeatherDataBody model={model} />
         </table>
     </div>
 )
