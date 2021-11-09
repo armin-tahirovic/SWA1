@@ -6,15 +6,22 @@ export default (init_model, view, renderer) => {
         const { weather } = action
         switch (action.type) {
             case 'copenhagenWeather':
-                console.log(action)
                 const { weatherC } = action
                 return model.CityWeatherData(weatherC)
 
             case 'aarhusWeather':
-                return model.CityWeatherData(weather)
+                const { weatherAa } = action
+                console.log(weatherAa)
+                return model.CityWeatherData(weatherAa)
 
             case 'horsensWeather':
-                return model.CityWeatherData(weather)
+                const { weatherH } = action
+                return model.CityWeatherData(weatherH)
+
+            case 'fromDateToDate':
+                // const { weatherF, weatherT } = action
+                console.log(action.params)
+                return model.TimeWeatherData(action.param, action.params)
 
             // Forecast
             case 'copenhagenForecast':

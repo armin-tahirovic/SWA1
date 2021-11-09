@@ -5,9 +5,7 @@ const model = (weather, forecast) => {
 
     const CityWeatherData = weather => model(weather, forecast)
 
-    const TimeWeatherData = (from, to) => weather
-        .sort((a, b) => (a.time > b.time) ? -1 : 1)
-        .filter(w => w.time >= from && w.time <= to)
+    const TimeWeatherData = (from, to) => model(from, to)
 
     // Forecast
     const CityForecastData = city => forecast

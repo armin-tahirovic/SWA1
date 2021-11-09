@@ -36,7 +36,22 @@ export default dispatcher => model => (
                     <td>Time</td>
                     <td>Place</td>
                     <td colSpan="3" key='copenhagen'>
-                        <button onClick={() => dispatcher()({ type: 'copenhagenWeather', param: 'Copenhagen' })}>Copenhagen weather</button>
+                        <button onClick={() => dispatcher()({ type: 'copenhagenWeather' })}>Copenhagen weather</button>
+                    </td>
+                    <td colSpan="3" key='aarhus'>
+                        <button onClick={() => dispatcher()({ type: 'aarhusWeather' })}>Aarhus weather</button>
+                    </td>
+                    <td colSpan="3" key='horsens'>
+                        <button onClick={() => dispatcher()({ type: 'horsensWeather' })}>Horsens weather</button>
+                    </td>
+                    <td colSpan="3">
+                        <input type='date' id='fromDate'></input>
+                    </td>
+                    <td colSpan="3">
+                        <input type='date' id='toDate'></input>
+                    </td>
+                    <td colSpan="3" key='dataBtn'>
+                        <button onClick={() => dispatcher()({ type: 'fromDateToDate', param: document.getElementById('fromDate').value, params: document.getElementById('toDate').value})}>Dates</button>
                     </td>
                 </tr>
             </thead>
