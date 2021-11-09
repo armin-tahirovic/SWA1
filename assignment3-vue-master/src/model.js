@@ -3,13 +3,9 @@ const model = (weather, forecast) => {
     const Weather = () => weather
         .sort((a, b) => (a.time > b.time) ? -1 : 1)
 
-    const CityWeatherData = city => weather
-        .sort((a, b) => (a.time > b.time) ? -1 : 1)
-        .filter(w => w.place === city)
+    const CityWeatherData = weather => model(weather, forecast)
 
-    const TimeWeatherData = (from, to) => weather
-        .sort((a, b) => (a.time > b.time) ? -1 : 1)
-        .filter(w => w.time >= from && w.time <= to)
+    const TimeWeatherData = (from, to) => model(from, to)
 
     // Forecast
     const CityForecastData = city => forecast
