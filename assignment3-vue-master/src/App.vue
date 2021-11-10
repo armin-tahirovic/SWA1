@@ -1,6 +1,9 @@
 <template>
   <div id="dynamic-component-demo" class="demo">
     <h1>Weather</h1>
+    <input type='date' v-model="from">
+    <input type='date' v-model="to">
+    <button v-on:click="fromDateToDate()">Submit</button>
     <Weather :weathers='weathers' @copenhagenWeather='copenhagenWeather' @aarhusWeather='aarhusWeather' @horsensWeather='horsensWeather' @fromDateToDate='fromDateToDate' />
   </div>
 </template>
@@ -12,7 +15,9 @@ export default {
   name: 'App',
   data() {
     return {
-      model: {}
+      model: {},
+      from: null,
+      to: null
     }
   },
   computed: {
@@ -31,8 +36,9 @@ export default {
       const weatherH = await fetch('http://localhost:8080/data/Horsens').then(res => res.json())
       this.model = this.model.CityWeatherData(weatherH)
     },
-    async fromDateToDate(from, to) {
-      console.log(from, to)
+    async fromDateToDate() {
+      console.log(this.from, this.to)
+      this.model = this.model.TimeWeatherData(this.from, this.to)
     }
   },
   components: {

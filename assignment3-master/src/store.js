@@ -19,8 +19,6 @@ export default (init_model, view, renderer) => {
                 return model.CityWeatherData(weatherH)
 
             case 'fromDateToDate':
-                // const { weatherF, weatherT } = action
-                console.log(model.TimeWeatherData(action.param, action.params))
                 return model.TimeWeatherData(action.param, action.params)
 
             // Forecast
