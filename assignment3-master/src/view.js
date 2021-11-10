@@ -23,6 +23,30 @@ const WeatherDataBody = ({ model }) => (
     </tbody>
 )
 
+const ForecastData = ({ forecast }) => [
+    <td key='from'>{forecast.from}</td>,
+    <td key='to'>{forecast.to}</td>,
+    <td key='type'>{forecast.type}</td>,
+    <td key='unit'>{forecast.unit}</td>,
+    <td key='time'>{forecast.time}</td>,
+    <td key='place'>{forecast.place}</td>
+]
+
+// eslint-disable-next-line
+const ForecastRow = (props) => (
+    <tr>
+        <ForecastData {...props} />
+    </tr>
+)
+
+const ForecastDataBody = ({ model }) => (
+    <tbody>
+        {
+            model.Forecast().map(forecast => <ForecastRow {...{ forecast }} />)
+        }
+    </tbody>
+)
+
 // eslint-disable-next-line
 export default dispatcher => model => (
     <div id='base'>
@@ -56,6 +80,9 @@ export default dispatcher => model => (
                 </tr>
             </thead>
             <WeatherDataBody model={model} />
+            <br></br>
+            <h1>Forecast</h1>
+            <ForecastDataBody model={model} />
         </table>
     </div>
 )

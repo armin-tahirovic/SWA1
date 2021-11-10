@@ -1,42 +1,26 @@
 // eslint-disable-next-line
 export default store => async ({ type, ...params }) => {
-    let forecast
     switch (type) {
         case 'copenhagenWeather':
             const weatherC = await fetch('http://localhost:8080/data/Copenhagen').then(res => res.json())
-            store({ type, ...params, weatherC })
+            const forecastC = await fetch('http://localhost:8080/forecast/Copenhagen').then(res => res.json())
+            store({ type, ...params, weatherC, forecastC })
             break;
 
         case 'aarhusWeather':
             const weatherAa = await fetch('http://localhost:8080/data/Aarhus').then(res => res.json())
-            store({ type, ...params, weatherAa })
+            const forecastAa = await fetch('http://localhost:8080/forecast/Aarhus').then(res => res.json())
+            store({ type, ...params, weatherAa, forecastAa })
             break;
 
         case 'horsensWeather':
             const weatherH = await fetch('http://localhost:8080/data/Horsens').then(res => res.json())
-            store({ type, ...params, weatherH })
+            const forecastH = await fetch('http://localhost:8080/forecast/Horsens').then(res => res.json())
+            store({ type, ...params, weatherH, forecastH })
             break;
 
         case 'fromDateToDate':
-            const weatherF = await fetch('http://localhost:8080/data').then(res => res.json())
-            const weatherT = await fetch('http://localhost:8080/forecast').then(res => res.json())
-            store({ type, ...params, weatherF, weatherT })
-            break;
-
-        // Forecast
-        case 'copenhagenForecast':
-            forecast = await fetch('http://localhost:8080/forecast/Copenhagen')
-            store({ type, ...params, forecast })
-            break;
-
-        case 'aarhusForecast':
-            forecast = await fetch('http://localhost:8080/forecast/Aarhus')
-            store({ type, ...params, forecast })
-            break;
-
-        case 'horsensForecast':
-            forecast = await fetch('http://localhost:8080/forecast/Horsens')
-            store({ type, ...params, forecast })
+            store({ type, ...params })
             break;
 
         default:
