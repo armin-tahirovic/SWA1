@@ -20,7 +20,7 @@ export default (init_model, view, renderer) => {
 
             case 'fromDateToDate':
                 // const { weatherF, weatherT } = action
-                console.log(action.params)
+                console.log(model.TimeWeatherData(action.param, action.params))
                 return model.TimeWeatherData(action.param, action.params)
 
             // Forecast

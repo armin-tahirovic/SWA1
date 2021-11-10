@@ -19,7 +19,7 @@ export default store => async ({ type, ...params }) => {
 
         case 'fromDateToDate':
             const weatherF = await fetch('http://localhost:8080/data').then(res => res.json())
-            const weatherT = await fetch('http://localhost:8080/data').then(res => res.json())
+            const weatherT = await fetch('http://localhost:8080/forecast').then(res => res.json())
             store({ type, ...params, weatherF, weatherT })
             break;
 
