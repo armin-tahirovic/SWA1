@@ -1,25 +1,26 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import model from './model.js'
+import view from './view.js'
+import store from './store.js'
+import dispatcher from './dispatcher.js'
 
-import { model } from './model'
-import { server_dispatch_rx } from './dispatcher'
-import { store } from './store'
-import { ajax } from 'rxjs/ajax'
-import ReactDOM from 'react-dom';
+async function init() {
+  try {
+    const weather_res = await fetch('http://localhost:8080/data')
+    const weather = await weather_res.json()
+    const forecast = await fetch('http://localhost:8080/forecast').then(res => res.json())
+    const warning = await fetch('http://localhost:8080/warnings').then(res => res.json())
+    const theModel = model(weather, forecast, warning)
+    let renderer = dom => ReactDOM.render(dom, document.getElementById('root'))
+    let theDispatcher
+    const theView = view(() => theDispatcher)
+    const theStore = store(theModel, theView, renderer)
+    theDispatcher = dispatcher(theStore)
+    renderer(theView(theModel))
+  } catch (err) {
+    console.log(err)
+  }
+}
 
-ajax.getJSON('http://localhost:8080/warnings')
-.subscribe(warnings => {
-    const dispatch = action => actions.next(action)
-    const render = dom => ReactDOM.render(dom, document.getElementById('root'))
-    const view = create_view(dispatch)
-    const init_state = model({warnings})
-
-    render(view(init_state))
-
-    actions
-  .pipe(mergeMap(server_dispatch_rx))
-  .pipe(scan(store, init_state))
-  .pipe(map(view))
-  .subscribe(render)
-})
+init()

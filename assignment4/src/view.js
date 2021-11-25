@@ -169,9 +169,11 @@ export default dispatcher => model => (
                     </td>
                 </tr>
             </thead>
-            <WeatherDataBody model={model} />
-
+            <h1>Warnings</h1>
             <WarningDataBody model={model} />
+
+            <h1>All weather</h1>
+            <WeatherDataBody model={model} />
 
             <div>
                 <h1>Latest Measurements</h1><button onClick={() => dispatcher()({ type: 'updateLatest' })}>Update</button>

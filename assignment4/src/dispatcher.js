@@ -26,7 +26,7 @@ const check_warnings = async (dispatch) => {
         console.log(json)
         const state = await dispatch({
           type: 'update_warning', 
-          warnings: json.warnings.slice(original_moves.length),
+          warnings: json.warnings,
         })
       }
       setTimeout(updater, 100, json.warnings)
