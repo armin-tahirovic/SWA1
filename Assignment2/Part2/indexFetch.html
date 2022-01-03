@@ -21,10 +21,7 @@
     <script src="model.js"></script>
     <script src="viewFetch.js"></script>
     <script>
-
-
         const init = function () {
-
             const theView = view(window)
             Promise.all([fetch('http://localhost:8080/data'), fetch('http://localhost:8080/forecast')])
                 // .then(res => res.every(r => r.ok ? r : Promise.reject('Error message')))
@@ -36,7 +33,6 @@
                 })
                 .catch(e => theView.displayError(e))
         }
-
     </script>
 </head>
 
@@ -136,9 +132,6 @@
             </thead>
             <tbody id='showPredictData'></tbody>
         </table>
-
-
     </div>
 </body>
-
 </html>

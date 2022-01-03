@@ -21,7 +21,7 @@
         const init = function () {
             const theView = view(window)
             const request = new XMLHttpRequest()
-            request.open('GET', 'http://localhost:8080/data')
+            request.open('GET', 'http://localhost:8080/data', true)
             request.send()
             request.onerror = () => view.displayError
             request.onload = () => {
